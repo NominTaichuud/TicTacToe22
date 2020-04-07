@@ -1,0 +1,68 @@
+﻿using System;
+
+namespace TicTacToeAndOthello2.Properties
+{
+    public class Game
+    {
+        Board board=new Board();
+        
+        private String playsAgain="Y";
+        private int counter=0;
+        public String PlaysAgain { get => playsAgain; set => playsAgain = value; }
+        public int Counter
+        {
+            get
+            {
+                return counter;
+            }
+            set
+            {
+                counter = value;
+            }
+        }
+        //public Board Board { get => board; set => board = value; }
+        public Game()
+        {
+
+        }
+        public Game(Board board)
+        {
+            this.board = board;
+        }
+        public void askData(String player)
+        {
+            Console.Clear();
+
+            Console.WriteLine("Player: " + player); // X / O
+            int selection;
+
+            while (true)
+            {
+                Console.WriteLine("Please enter your selection.");
+                Console.WriteLine("Counter: " + Counter);
+                board.drawBoard();
+                selection = Convert.ToInt32(Console.ReadLine()); // input from the user, the index of board
+                // [0, ..., 8]
+                if (selection < 0 || selection > 8 || (board.currentBoard[selection].Equals("X") || board.currentBoard[selection].Equals("O")))
+                    Console.WriteLine("Invalid selection!");
+                else
+                    break;
+            }
+            board.currentBoard[selection] = player;
+            //Console.WriteLine(board.currentBoard[4]);
+            Counter++;
+            board.drawBoard();
+        }
+
+        public void Reset()
+        {
+            // clear the board
+            //board.initializeVariable();
+            // counter = 0
+            Counter = 0;
+        }
+    }
+
+   
+   
+}
